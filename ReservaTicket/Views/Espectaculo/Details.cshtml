@@ -1,0 +1,36 @@
+﻿@model ReservaTicket.Models.Espectaculo
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Espectaculo</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.fechaEspectaculo)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.fechaEspectaculo)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.creador)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.creador.Apellido)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.cantEntradas)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.cantEntradas)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model?.idEspectaculo">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
