@@ -11,8 +11,8 @@ namespace ReservaTicket.Models
 
         [Display(Name = "UsuarioId")]
         public int usuarioID { get; set; }
-
-    
+        [Required]
+        public string nombreEspectaculo { get; set; }
 
         [Required]
         [Display(Name = "Fecha")]
@@ -26,6 +26,9 @@ namespace ReservaTicket.Models
         [Required]
         public int cantEntradas { get; set; }
 
-  
+        [Required]
+        public string descripcionEspectaculo { get; set; }
+
+
     }
 }

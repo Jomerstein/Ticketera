@@ -1,0 +1,28 @@
+﻿
+@{
+    ViewData["Title"] = "CheckearEntrada";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@model ReservaTicket.Models.Entrada;
+
+<h1>@TempData["ResultadoOperacion"].ToString()</h1>
+<!-- TempData["ResultadoOperacion"] = "La entrada no existe / eso no es una entrada brother";
+     TempData["ResultadoOperacion"] = "El espectáculo no existe";
+     TempData["ResultadoOperacion"] = "La entrada es de otro espectaculo";
+      TempData["ResultadoOperacion"] = "Usted no tiene permiso para scannear esta entrada";
+      TempData["ResultadoOperacion"] = "La entrada ya fué canjeada";
+      TempData["ResultadoOperacion"] = "Entrada canjeada con éxito";
+-->
+
+
+<a asp-action="Scanner" asp-controller="Home" class="btn btn-outline-dark flex-shrink-0" type="button">
+    <i class="bi-cart-fill me-1"></i>
+   Seguir scanneando
+</a>
+<br />
+
+
+<!-- Bootstrap core JS-->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Core theme JS-->
+<script src="js/scripts.js"></script>

@@ -61,8 +61,16 @@ namespace ReservaTicket.Migrations
                     b.Property<int>("cantEntradas")
                         .HasColumnType("int");
 
+                    b.Property<string>("descripcionEspectaculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("fechaEspectaculo")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("nombreEspectaculo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("usuarioID")
                         .HasColumnType("int");

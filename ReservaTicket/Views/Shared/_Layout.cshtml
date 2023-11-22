@@ -14,20 +14,25 @@
     <!-- Responsive navbar-->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Ticketera</a>
+            <a class="navbar-brand" asp-area="" asp-controller="Espectaculo" asp-action="Indexeado">Ticketera</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
-                    <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Create">Crear espectáculo</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">Sobre la empresa</a></li>
+                  
+                    
+                  
                     @{
                         if (String.IsNullOrEmpty(@HttpContextAccessor.HttpContext.Session.GetString("elloco")))
                         {
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Error">Crear espectáculo</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Error">Scanner</a></li>
                             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Create">Registrarse</a></li>
                             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Login">Iniciar Sesión</a></li>
                         }
                         else
                         {
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Espectaculo" asp-action="Create">Crear espectáculo</a></li>
+                            <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Home" asp-action="Scanner">Scanner</a></li>
                             <li class="nav-item"><a class="nav-link" asp-area="" asp-controller="Usuario" asp-action="Logout"> Cerrar Sesión</a></li>
                         }
                     }

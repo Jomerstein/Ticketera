@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+}
+
+<script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
+
+<div id="scanner-container">
+    <video id="preview"></video>
+    <button id="startScan">Iniciar Escáner</button>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        let scanner = new Instascan.Scanner({ video: document.getElementById('preview') });
+
+        document.getElementById('startScan').addEventListener('click', function () {
+            Instascan.Camera.getCameras().then(function (cameras) {
+                if (cameras.length > 0) {
+                    scanner.start(cameras[0]);
+                } else {
+                    console.error('No se encontraron cámaras disponibles.');
+                }
+            }).catch(function (e) {
+                console.error(e);
+            });
+        });
+
+        scanner.addListener('scan', function (content) {
+            
+            window.location.href = '@Url.Action("CheckearEntrada", "Espectaculo", new { id = "__id__" })'.replace("__id__", content);
+            // Puedes hacer lo que quieras con el contenido del código QR
+        });
+    });
+</script>

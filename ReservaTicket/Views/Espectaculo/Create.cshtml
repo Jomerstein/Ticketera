@@ -4,39 +4,47 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Crear un espectáculo</h1>
 
-<h4>Espectaculo</h4>
-<hr />
+
+
+
 <div class="row">
-    <div class="col-md-4">
-        <form asp-action="Create">
+    <div class="col-md-6 offset-md-3">
+        <form asp-action="Create" class="my-4 p-4 border rounded">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
             <div class="form-group">
-                <label asp-for="usuarioID" class="control-label"></label>
-                <select asp-for="usuarioID" class ="form-control" asp-items="ViewBag.usuarioID"></select>
+                <label asp-for="nombreEspectaculo" class="form-group">Nombre del Espectáculo</label>
+                <input asp-for="nombreEspectaculo" class="form-control" />
             </div>
+
             <div class="form-group">
-                <label asp-for="fechaEspectaculo" class="control-label"></label>
+                <label asp-for="fechaEspectaculo" class="control-label">Fecha del Espectáculo</label>
                 <input asp-for="fechaEspectaculo" class="form-control" />
                 <span asp-validation-for="fechaEspectaculo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <label asp-for="cantEntradas" class="control-label"></label>
+                <label asp-for="cantEntradas" class="control-label">Cantidad de Entradas</label>
                 <input asp-for="cantEntradas" class="form-control" />
                 <span asp-validation-for="cantEntradas" class="text-danger"></span>
             </div>
+
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="descripcionEspectaculo" class="control-label">Descripción del Espectáculo</label>
+                <textarea asp-for="descripcionEspectaculo" class="form-control" rows="4"></textarea>
+                <span asp-validation-for="descripcionEspectaculo" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <button type="submit" class="btn btn-outline-dark flex-shrink-0" >Crear Espectáculo</button>
             </div>
         </form>
     </div>
 </div>
 
-<div>
-    <a asp-action="Index">Back to List</a>
-</div>
 
-@section Scripts {
-    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
-}
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -59,20 +60,36 @@ namespace ReservaTicket.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("ID,Nombre,Apellido,NomUsuario,contrasenia,Direccion,Telefono,Mail")] Usuario usuario)
         {
-           
+
             if (ModelState.IsValid)
             {
+
+                var correoExistente = _context.usuarios.FirstOrDefault(u => u.Mail == usuario.Mail);
+                if (correoExistente != null)
+                {
+                    ModelState.AddModelError("Mail", "Este correo electrónico ya está en uso.");
+                    return View(usuario);
+                }
+                var nomUsuarioExistente = _context.usuarios.FirstOrDefault(u => u.NomUsuario == usuario.NomUsuario);
+                if (nomUsuarioExistente != null)
+                {
+                    ModelState.AddModelError("nomUsuario", "Este nombre de usuario ya está en uso.");
+                    return View(usuario);
+                }
+               
                 _context.Add(usuario);
                 await _context.SaveChangesAsync();
                 HttpContext.Session.SetString("elloco", usuario.Mail);
                
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Indexeado", "Espectaculo");
                 
                 
 
             }
             return View(usuario);
         }
+
+       
 
         // GET: Usuario/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -186,7 +203,7 @@ namespace ReservaTicket.Controllers
                // usuarioCont = usuarioDb;
                HttpContext.Session.SetString("elloco", usuarioDb.Mail);
                 Console.WriteLine(HttpContext.Session.GetString("elloco"));
-                return RedirectToAction("Index", "Home");
+                return RedirectToAction("Indexeado", "Espectaculo");
             }
             return View(null);
         }
@@ -195,7 +212,7 @@ namespace ReservaTicket.Controllers
         {
             HttpContext.Session.SetString("elloco", string.Empty);
             Console.WriteLine(HttpContext.Session.GetString("elloco"));
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Indexeado", "Espectaculo");
 
         }
     }
